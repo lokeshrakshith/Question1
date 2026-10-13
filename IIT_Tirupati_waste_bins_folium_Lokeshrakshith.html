@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f36990f038ccb63dd2460af746560c2b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f36990f038ccb63dd2460af746560c2b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f36990f038ccb63dd2460af746560c2b = L.map(
+                "map_f36990f038ccb63dd2460af746560c2b",
+                {
+                    center: [13.711517061728328, 79.59207526330961],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 16,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_f36990f038ccb63dd2460af746560c2b);
+
+            
+
+        
+    
+            var tile_layer_d15a0c2bc7263217cf2ef4793565cd94 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d15a0c2bc7263217cf2ef4793565cd94.addTo(map_f36990f038ccb63dd2460af746560c2b);
+        
+    
+        function geo_json_931b6d2a90503b98bff7648c23f2a53f_pointToLayer(feature, latlng) {
+            var opts = {
+  "stroke": true,
+  "color": "#17324d",
+  "weight": 1.5,
+  "opacity": 1.0,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "#f08a24",
+  "fillOpacity": 0.85,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "radius": 6,
+};
+            
+            return new L.CircleMarker(latlng, opts)
+        }
+
+        function geo_json_931b6d2a90503b98bff7648c23f2a53f_onEachFeature(feature, layer) {
+            (
+function(feature, layer) {
+    const p = feature.properties || {};
+    const studentName = "PASULA LOKESH RAKSHITH";
+
+    const esc = (value) => String(value == null ? "Not recorded" : value)
+        .replace(/[&<>"']/g, c => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[c]));
+
+    const photo = p.photo_url
+        ? `<img src="${esc(p.photo_url)}"
+                alt="Waste-bin observation photo"
+                style="width:100%; max-width:280px; height:auto;
+                       margin:8px 0; border-radius:4px;">`
+        : `<p><em>Photo not available</em></p>`;
+
+    const html = `
+        <div style="width:280px;">
+            <h4 style="margin:0 0 6px;">${esc(p.title)}</h4>
+            ${photo}
+            <p><b>Collected by:</b> ${esc(studentName)}</p>
+            <p><b>Note:</b><br>
+               <span style="white-space:pre-wrap;">${esc(p.note)}</span></p>
+            <p><b>Recorded:</b> ${esc(p.timestamp)}</p>
+            <p><b>Marker color:</b> ${esc(p.color)}</p>
+        </div>`;
+
+    layer.bindPopup(html, {maxWidth: 320});
+}
+)(feature, layer);
+
+            layer.on({
+            });
+        };
+        var geo_json_931b6d2a90503b98bff7648c23f2a53f = L.geoJson(null, {
+                onEachFeature: geo_json_931b6d2a90503b98bff7648c23f2a53f_onEachFeature,
+            
+                pointToLayer: geo_json_931b6d2a90503b98bff7648c23f2a53f_pointToLayer,
+            ...{
+}
+        });
+
+        function geo_json_931b6d2a90503b98bff7648c23f2a53f_add (data) {
+            geo_json_931b6d2a90503b98bff7648c23f2a53f
+                .addData(data);
+        }
+            geo_json_931b6d2a90503b98bff7648c23f2a53f_add({"bbox": [79.58852447062611, 13.706022190990614, 79.59562605599311, 13.717011932466042], "features": [{"bbox": [79.5913459539738, 13.716027064184985, 79.5913459539738, 13.716027064184985], "geometry": {"coordinates": [79.5913459539738, 13.716027064184985, 0.0], "type": "Point"}, "id": "0", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "", "timestamp": "2026-09-04 06:53:28.339000+00:00", "title": "Not recorded"}, "type": "Feature"}, {"bbox": [79.5913459539738, 13.716027064184985, 79.5913459539738, 13.716027064184985], "geometry": {"coordinates": [79.5913459539738, 13.716027064184985, 0.0], "type": "Point"}, "id": "1", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/aa0add41-5813-4c59-a3ea-3602a5bfff8a_JPEG_20260904065404844.jpg", "timestamp": "2026-09-04 06:53:31.934000+00:00", "title": "Dust bin 1"}, "type": "Feature"}, {"bbox": [79.58852447062611, 13.71677180876974, 79.58852447062611, 13.71677180876974], "geometry": {"coordinates": [79.58852447062611, 13.71677180876974, 0.0], "type": "Point"}, "id": "2", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/e2129b32-3c68-4d82-b345-3be8f0cdbbde_JPEG_20260904082113182.jpg", "timestamp": "2026-09-04 08:20:54.818000+00:00", "title": "Dust bin 2"}, "type": "Feature"}, {"bbox": [79.58866610925185, 13.715460709455538, 79.58866610925185, 13.715460709455538], "geometry": {"coordinates": [79.58866610925185, 13.715460709455538, 0.0], "type": "Point"}, "id": "3", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/9a75251a-da59-465a-8780-be02176c10b3_JPEG_20260904082320342.jpg", "timestamp": "2026-09-04 08:23:12.876000+00:00", "title": "Dust bin 3"}, "type": "Feature"}, {"bbox": [79.58952154517678, 13.71472766812349, 79.58952154517678, 13.71472766812349], "geometry": {"coordinates": [79.58952154517678, 13.71472766812349, 0.0], "type": "Point"}, "id": "4", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/26b18f70-1590-45b9-bdd8-54e500eef5ab_JPEG_20260904082518093.jpg", "timestamp": "2026-09-04 08:25:09.794000+00:00", "title": "Dust bin 4"}, "type": "Feature"}, {"bbox": [79.59082874499914, 13.717011932466042, 79.59082874499914, 13.717011932466042], "geometry": {"coordinates": [79.59082874499914, 13.717011932466042, 0.0], "type": "Point"}, "id": "5", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/2d7d1e94-c505-454b-a354-ba4a28845a74_JPEG_20260904084041746.jpg", "timestamp": "2026-09-04 08:40:32.771000+00:00", "title": "Dust bin 5"}, "type": "Feature"}, {"bbox": [79.59107975542015, 13.714635493418545, 79.59107975542015, 13.714635493418545], "geometry": {"coordinates": [79.59107975542015, 13.714635493418545, 0.0], "type": "Point"}, "id": "6", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/0c3d4cc4-173e-42fa-90cb-9c8c56d39c1b_JPEG_20260904084625771.jpg", "timestamp": "2026-09-04 08:46:16.409000+00:00", "title": "Waste bin 6"}, "type": "Feature"}, {"bbox": [79.59144320046923, 13.71643025158244, 79.59144320046923, 13.71643025158244], "geometry": {"coordinates": [79.59144320046923, 13.71643025158244, 0.0], "type": "Point"}, "id": "7", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/511fc6a3-a35d-4af5-b6e8-e013f3c3104d_JPEG_20260904084918128.jpg", "timestamp": "2026-09-04 08:48:33.541000+00:00", "title": "Dust bin 7"}, "type": "Feature"}, {"bbox": [79.59138011429701, 13.71549136131083, 79.59138011429701, 13.71549136131083], "geometry": {"coordinates": [79.59138011429701, 13.71549136131083, 0.0], "type": "Point"}, "id": "8", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/97ddb9ee-f9a5-48ea-b0b9-697b010a5718_JPEG_20260904090202584.jpg", "timestamp": "2026-09-04 09:01:52.762000+00:00", "title": "Dust bin 8"}, "type": "Feature"}, {"bbox": [79.59055161633408, 13.716393265613704, 79.59055161633408, 13.716393265613704], "geometry": {"coordinates": [79.59055161633408, 13.716393265613704, 0.0], "type": "Point"}, "id": "9", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/00ece47c-3054-4b7b-922e-78c4320a3e74_JPEG_20260904090255941.jpg", "timestamp": "2026-09-04 09:02:48.322000+00:00", "title": "Dust bin 9"}, "type": "Feature"}, {"bbox": [79.59112001840481, 13.716546011158535, 79.59112001840481, 13.716546011158535], "geometry": {"coordinates": [79.59112001840481, 13.716546011158535, 0.0], "type": "Point"}, "id": "10", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/4bc4a8b0-4e15-414e-9dec-3c23d502528c_JPEG_20260904090338398.jpg", "timestamp": "2026-09-04 09:03:27.441000+00:00", "title": "Waste bin 10"}, "type": "Feature"}, {"bbox": [79.59018982872568, 13.714329672381442, 79.59018982872568, 13.714329672381442], "geometry": {"coordinates": [79.59018982872568, 13.714329672381442, 0.0], "type": "Point"}, "id": "11", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/319ad613-c5bd-4d67-8347-5ddc6dac8287_JPEG_20260904091134064.jpg", "timestamp": "2026-09-04 09:11:19.195000+00:00", "title": "Dust bin 11"}, "type": "Feature"}, {"bbox": [79.5948021, 13.706595299999998, 79.5948021, 13.706595299999998], "geometry": {"coordinates": [79.5948021, 13.706595299999998, 32.0], "type": "Point"}, "id": "12", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/7eb6726d-77e6-4c54-ba96-8443e984afd0_JPEG_20260904120435751.jpg", "timestamp": "2026-09-04 12:04:18.328000+00:00", "title": "Dust bin 12"}, "type": "Feature"}, {"bbox": [79.5949492971509, 13.706711090660267, 79.5949492971509, 13.706711090660267], "geometry": {"coordinates": [79.5949492971509, 13.706711090660267, 0.0], "type": "Point"}, "id": "13", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/4fd1502f-0450-42e6-b649-d4372774cfbe_JPEG_20260904120525298.jpg", "timestamp": "2026-09-04 12:05:13.217000+00:00", "title": "Dust bin 13"}, "type": "Feature"}, {"bbox": [79.59447702765351, 13.706022190990614, 79.59447702765351, 13.706022190990614], "geometry": {"coordinates": [79.59447702765351, 13.706022190990614, 0.0], "type": "Point"}, "id": "14", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/5d9773a5-2127-4660-aa56-867e1d2c0fb4_JPEG_20260904131853686.jpg", "timestamp": "2026-09-04 13:18:32.125000+00:00", "title": "Dust bin 14"}, "type": "Feature"}, {"bbox": [79.5946233629074, 13.708108703649264, 79.5946233629074, 13.708108703649264], "geometry": {"coordinates": [79.5946233629074, 13.708108703649264, 0.0], "type": "Point"}, "id": "15", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/d685ee35-a216-4255-b55d-c4c6adb64893_JPEG_20260904133456311.jpg", "timestamp": "2026-09-04 13:34:45.767000+00:00", "title": "Dust bin 15"}, "type": "Feature"}, {"bbox": [79.59490791700664, 13.708067584640114, 79.59490791700664, 13.708067584640114], "geometry": {"coordinates": [79.59490791700664, 13.708067584640114, 0.0], "type": "Point"}, "id": "16", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/e782b82a-162b-4426-8ce9-fe0313521ebb_JPEG_20260904133541984.jpg", "timestamp": "2026-09-04 13:35:28.904000+00:00", "title": "Dust bin 16"}, "type": "Feature"}, {"bbox": [79.59277182256209, 13.70724931783302, 79.59277182256209, 13.70724931783302], "geometry": {"coordinates": [79.59277182256209, 13.70724931783302, 0.0], "type": "Point"}, "id": "17", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/415e5d37-f9e5-4397-8233-a2d023913b5b_JPEG_20260905124239613.jpg", "timestamp": "2026-09-05 12:42:26.176000+00:00", "title": "Dust bin 17"}, "type": "Feature"}, {"bbox": [79.59303743429057, 13.707373263332654, 79.59303743429057, 13.707373263332654], "geometry": {"coordinates": [79.59303743429057, 13.707373263332654, 0.0], "type": "Point"}, "id": "18", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/b24dfdaa-368b-4f62-90d0-1311f114f94b_JPEG_20260905124341218.jpg", "timestamp": "2026-09-05 12:43:28.245000+00:00", "title": "Dust bin 18"}, "type": "Feature"}, {"bbox": [79.59289614958742, 13.70763129959722, 79.59289614958742, 13.70763129959722], "geometry": {"coordinates": [79.59289614958742, 13.70763129959722, 0.0], "type": "Point"}, "id": "19", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/86d1e379-bfd5-4b39-b5a8-6a1da066f03c_JPEG_20260905124821975.jpg", "timestamp": "2026-09-05 12:48:14.926000+00:00", "title": "Dust bin 19"}, "type": "Feature"}, {"bbox": [79.5928709564381, 13.707417303664762, 79.5928709564381, 13.707417303664762], "geometry": {"coordinates": [79.5928709564381, 13.707417303664762, 0.0], "type": "Point"}, "id": "20", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/3fe4def8-3e7c-401b-9604-86836fde55a7_JPEG_20260905124859789.jpg", "timestamp": "2026-09-05 12:48:43.826000+00:00", "title": "Dust bin 20"}, "type": "Feature"}, {"bbox": [79.59267828662135, 13.708338571433945, 79.59267828662135, 13.708338571433945], "geometry": {"coordinates": [79.59267828662135, 13.708338571433945, 0.0], "type": "Point"}, "id": "21", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/df3c0ef3-d67c-4d4d-a8d5-a7c9c63bc7e3_JPEG_20260905125115682.jpg", "timestamp": "2026-09-05 12:51:09.283000+00:00", "title": "Dust bin 21"}, "type": "Feature"}, {"bbox": [79.5923532812901, 13.709728754830286, 79.5923532812901, 13.709728754830286], "geometry": {"coordinates": [79.5923532812901, 13.709728754830286, 0.0], "type": "Point"}, "id": "22", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/c86ec73a-77ab-4e3f-9fdf-c011cae0a549_JPEG_20260905130330325.jpg", "timestamp": "2026-09-05 13:03:12.025000+00:00", "title": "Dust bin 22"}, "type": "Feature"}, {"bbox": [79.59233791032068, 13.710953013128167, 79.59233791032068, 13.710953013128167], "geometry": {"coordinates": [79.59233791032068, 13.710953013128167, 0.0], "type": "Point"}, "id": "23", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/fbe2a48e-bd31-4d39-a2fd-a571e6c24ae6_JPEG_20260905130616307.jpg", "timestamp": "2026-09-05 13:06:01.737000+00:00", "title": "Dust bin 23"}, "type": "Feature"}, {"bbox": [79.5930094831422, 13.709681698089408, 79.5930094831422, 13.709681698089408], "geometry": {"coordinates": [79.5930094831422, 13.709681698089408, 0.0], "type": "Point"}, "id": "24", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/95c60be0-613f-4590-93be-bf8aa7707497_JPEG_20260905131038347.jpg", "timestamp": "2026-09-05 13:10:27.795000+00:00", "title": "Dust bin 24"}, "type": "Feature"}, {"bbox": [79.59324400303029, 13.70944843904468, 79.59324400303029, 13.70944843904468], "geometry": {"coordinates": [79.59324400303029, 13.70944843904468, 0.0], "type": "Point"}, "id": "25", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/cae6a054-a02c-4bb9-b334-5ae6165c0d90_JPEG_20260905131138692.jpg", "timestamp": "2026-09-05 13:11:30.430000+00:00", "title": "Dust bin 25"}, "type": "Feature"}, {"bbox": [79.59389581176575, 13.708872358137643, 79.59389581176575, 13.708872358137643], "geometry": {"coordinates": [79.59389581176575, 13.708872358137643, 0.0], "type": "Point"}, "id": "26", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/76f35799-0981-4cfc-a1bb-743f2f845ffa_JPEG_20260905131319470.jpg", "timestamp": "2026-09-05 13:13:04.542000+00:00", "title": "Dust bin 27"}, "type": "Feature"}, {"bbox": [79.59435771056086, 13.708281778943725, 79.59435771056086, 13.708281778943725], "geometry": {"coordinates": [79.59435771056086, 13.708281778943725, 0.0], "type": "Point"}, "id": "27", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/374adfdd-a43d-4a54-8bff-5f3ac80e209b_JPEG_20260905132415122.jpg", "timestamp": "2026-09-05 13:24:07.392000+00:00", "title": "Dust bin 26"}, "type": "Feature"}, {"bbox": [79.5946525152175, 13.708449732563162, 79.5946525152175, 13.708449732563162], "geometry": {"coordinates": [79.5946525152175, 13.708449732563162, 0.0], "type": "Point"}, "id": "28", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/08ab27fe-a69f-4941-a95d-62173a14c702_JPEG_20260905132453243.jpg", "timestamp": "2026-09-05 13:24:46.233000+00:00", "title": "Dust bin 29"}, "type": "Feature"}, {"bbox": [79.59429665962647, 13.708424287781554, 79.59429665962647, 13.708424287781554], "geometry": {"coordinates": [79.59429665962647, 13.708424287781554, 0.0], "type": "Point"}, "id": "29", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/b807fbda-4c49-4fce-86fd-bf07c01356fa_JPEG_20260905132756840.jpg", "timestamp": "2026-09-05 13:27:49.932000+00:00", "title": "Dust bin 28"}, "type": "Feature"}, {"bbox": [79.59511430113194, 13.707937931910767, 79.59511430113194, 13.707937931910767], "geometry": {"coordinates": [79.59511430113194, 13.707937931910767, 0.0], "type": "Point"}, "id": "30", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/a58ac548-0f23-48f2-b7be-9e71092ecca5_JPEG_20260905132850932.jpg", "timestamp": "2026-09-05 13:28:45.603000+00:00", "title": "Dust bin 30"}, "type": "Feature"}, {"bbox": [79.59562605599311, 13.709865966340239, 79.59562605599311, 13.709865966340239], "geometry": {"coordinates": [79.59562605599311, 13.709865966340239, 0.0], "type": "Point"}, "id": "31", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/2d7ea61b-d96f-4fa4-8677-21f659869baf_JPEG_20260905133156760.jpg", "timestamp": "2026-09-05 13:31:49.133000+00:00", "title": "Dust bin 31"}, "type": "Feature"}, {"bbox": [79.5943392019009, 13.706409205251559, 79.5943392019009, 13.706409205251559], "geometry": {"coordinates": [79.5943392019009, 13.706409205251559, 0.0], "type": "Point"}, "id": "32", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/ae2e0b6a-b254-4f7c-82c6-43ebbf56518c_JPEG_20260905133231288.jpg", "timestamp": "2026-09-05 13:32:24.438000+00:00", "title": "Dust bin 32"}, "type": "Feature"}, {"bbox": [79.59399802, 13.70655902, 79.59399802, 13.70655902], "geometry": {"coordinates": [79.59399802, 13.70655902, 6.26971435546875], "type": "Point"}, "id": "33", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/a595dc99-fe79-4662-9a6c-965f9ae39c3a_JPEG_20260905133258974.jpg", "timestamp": "2026-09-05 13:32:53.030000+00:00", "title": "Dust bin 33"}, "type": "Feature"}, {"bbox": [79.59389154760468, 13.706660496099278, 79.59389154760468, 13.706660496099278], "geometry": {"coordinates": [79.59389154760468, 13.706660496099278, 0.0], "type": "Point"}, "id": "34", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/e7716ce5-b874-4ef8-a515-1d8083ebeed9_JPEG_20260905133352046.jpg", "timestamp": "2026-09-05 13:33:33.413000+00:00", "title": "Dust bin 34"}, "type": "Feature"}, {"bbox": [79.59477708156284, 13.70640051209051, 79.59477708156284, 13.70640051209051], "geometry": {"coordinates": [79.59477708156284, 13.70640051209051, 0.0], "type": "Point"}, "id": "35", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/0e2c8595-4232-4a52-b2c3-0403909b9a58_JPEG_20260905133558605.jpg", "timestamp": "2026-09-05 13:35:39.291000+00:00", "title": "Dust bin 35"}, "type": "Feature"}, {"bbox": [79.594556433191, 13.70654551467978, 79.594556433191, 13.70654551467978], "geometry": {"coordinates": [79.594556433191, 13.70654551467978, 0.0], "type": "Point"}, "id": "36", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "", "timestamp": "2026-09-05 13:36:54.487000+00:00", "title": "Not recorded"}, "type": "Feature"}, {"bbox": [79.5944419089791, 13.706745291235237, 79.5944419089791, 13.706745291235237], "geometry": {"coordinates": [79.5944419089791, 13.706745291235237, 0.0], "type": "Point"}, "id": "37", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/13c72b14-631a-41c5-9fad-17204925e806_JPEG_20260905133910376.jpg", "timestamp": "2026-09-05 13:38:53.334000+00:00", "title": "Dust bin 36"}, "type": "Feature"}, {"bbox": [79.59452514490692, 13.707157407526035, 79.59452514490692, 13.707157407526035], "geometry": {"coordinates": [79.59452514490692, 13.707157407526035, 0.0], "type": "Point"}, "id": "38", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/ac22d921-d0e4-460e-ac70-e6f621e80bd6_JPEG_20260905134020172.jpg", "timestamp": "2026-09-05 13:40:10.814000+00:00", "title": "Dust bin 37"}, "type": "Feature"}, {"bbox": [79.59446192925314, 13.707646687085694, 79.59446192925314, 13.707646687085694], "geometry": {"coordinates": [79.59446192925314, 13.707646687085694, 0.0], "type": "Point"}, "id": "39", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/d1db2475-123a-4d78-8141-f9171ba06cac_JPEG_20260905134139798.jpg", "timestamp": "2026-09-05 13:41:29.565000+00:00", "title": "Dust bin 38"}, "type": "Feature"}, {"bbox": [79.59487177575481, 13.708217109795548, 79.59487177575481, 13.708217109795548], "geometry": {"coordinates": [79.59487177575481, 13.708217109795548, 0.0], "type": "Point"}, "id": "40", "properties": {"color": "#377eb8", "note": "Not recorded", "photo_url": "waste-bin-photos/60858f4f-548c-4a90-8f6c-0a52614d6d69_JPEG_20260905134429907.jpg", "timestamp": "2026-09-05 13:44:22.584000+00:00", "title": "Dust bin 39"}, "type": "Feature"}], "type": "FeatureCollection"});
+        geo_json_931b6d2a90503b98bff7648c23f2a53f.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_931b6d2a90503b98bff7648c23f2a53f.addTo(map_f36990f038ccb63dd2460af746560c2b);
+        
+    
+            var layer_control_cee49d069c6e523559c005183d680f0c_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_d15a0c2bc7263217cf2ef4793565cd94,
+                },
+                overlays :  {
+                    "Waste-bin observations" : geo_json_931b6d2a90503b98bff7648c23f2a53f,
+                },
+            };
+            let layer_control_cee49d069c6e523559c005183d680f0c = L.control.layers(
+                layer_control_cee49d069c6e523559c005183d680f0c_layers.base_layers,
+                layer_control_cee49d069c6e523559c005183d680f0c_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_f36990f038ccb63dd2460af746560c2b);
+
+        
+    
+            map_f36990f038ccb63dd2460af746560c2b.fitBounds(
+                [[13.706022190990614, 79.58852447062611], [13.717011932466042, 79.59562605599311]],
+                {"padding": [20, 20]}
+            );
+        
+</script>
+</html>
